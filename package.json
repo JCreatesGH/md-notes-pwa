@@ -1,0 +1,25 @@
+{
+  "name": "md-notes-pwa",
+  "version": "0.1.0",
+  "description": "Offline-first Markdown notes PWA \u2014 IndexedDB storage, service worker, installable.",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "pwa",
+    "service-worker",
+    "indexeddb",
+    "markdown",
+    "offline",
+    "notes",
+    "typescript"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^4.0.0",
+    "typescript": "^5.4.0"
+  },
+  "author": "Joshua John <josh202@gmail.com>"
+}

@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6366f1">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Markdown Notes</title>
+<style>
+  :root{--bg:#0f1117;--side:#11151c;--fg:#e6edf3;--muted:#9aa4b2;--accent:#6366f1;--border:#222a36}
+  *{box-sizing:border-box} body,html{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif}
+  .app{display:grid;grid-template-columns:240px 1fr 1fr;height:100vh}
+  .side{background:var(--side);border-right:1px solid var(--border);display:flex;flex-direction:column}
+  .side .top{padding:12px;display:flex;gap:8px} #search{flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:#0b0d12;color:var(--fg)}
+  #new{background:var(--accent);border:0;color:#fff;border-radius:8px;padding:0 12px;cursor:pointer;font-size:1.2rem}
+  #list{overflow:auto;padding:0 8px} .item{display:block;width:100%;text-align:left;background:none;border:0;color:var(--fg);
+        padding:10px;border-radius:8px;cursor:pointer} .item:hover{background:#1b2230} .item.active{background:#1b2230;color:var(--accent)}
+  .empty{color:var(--muted);padding:12px;font-size:.9rem}
+  textarea{border:0;outline:0;resize:none;padding:24px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;font-size:.95rem;line-height:1.6;border-right:1px solid var(--border)}
+  .preview{padding:24px;overflow:auto} .preview h1{margin-top:0} .preview code{background:#1b2230;padding:2px 6px;border-radius:5px}
+  .preview pre{background:#11151c;padding:14px;border-radius:10px;overflow:auto}
+</style></head>
+<body><div class="app">
+  <div class="side">
+    <div class="top"><input id="search" placeholder="Search…"><button id="new" title="New note">+</button></div>
+    <div id="list"></div>
+  </div>
+  <textarea id="editor" placeholder="# Write markdown…"></textarea>
+  <div id="preview" class="preview"></div>
+</div>
+<script type="module" src="dist/app.js"></script>
+</body></html>
