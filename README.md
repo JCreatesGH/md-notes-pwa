@@ -1,6 +1,6 @@
 # md-notes-pwa
 
-[![CI](https://github.com/josh/md-notes-pwa/actions/workflows/ci.yml/badge.svg)](https://github.com/josh/md-notes-pwa/actions)
+[![CI](https://github.com/JCreatesGH/md-notes-pwa/actions/workflows/ci.yml/badge.svg)](https://github.com/JCreatesGH/md-notes-pwa/actions)
 [![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8)](https://web.dev/progressive-web-apps/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
