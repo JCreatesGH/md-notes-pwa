@@ -1,6 +1,6 @@
 {
   "name": "md-notes-pwa",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Offline-first Markdown notes PWA \u2014 IndexedDB storage, service worker, installable.",
   "type": "module",
   "scripts": {

@@ -47,4 +47,32 @@ describe("NotesStore", () => {
     expect((await store.search("milk")).length).toBe(1);
     expect((await store.search("")).length).toBe(2);
   });
+
+  it("exports and re-imports notes round-trip", async () => {
+    const a = new NotesStore(new MemoryBackend(), fixedClock());
+    await a.create("first");
+    await a.create("second");
+    const backup = await a.exportAll();
+
+    const b = new NotesStore(new MemoryBackend(), fixedClock());
+    const count = await b.importAll(backup);
+    expect(count).toBe(2);
+    expect((await b.list()).map((n) => n.body).sort()).toEqual(["first", "second"]);
+  });
+
+  it("import accepts a bare array and skips malformed entries", async () => {
+    const store = new NotesStore(new MemoryBackend(), fixedClock());
+    const count = await store.importAll(JSON.stringify([
+      { id: "note:keep", body: "good", updated: 5 },
+      { id: "note:bad", updated: 5 },          // no body -> skipped
+      "garbage",                                // not an object -> skipped
+    ]));
+    expect(count).toBe(1);
+    expect((await store.list())[0].body).toBe("good");
+  });
+
+  it("import returns 0 on invalid JSON", async () => {
+    const store = new NotesStore(new MemoryBackend(), fixedClock());
+    expect(await store.importAll("{not json")).toBe(0);
+  });
 });

@@ -49,4 +49,27 @@ export class NotesStore {
     if (!q) return this.list();
     return (await this.list()).filter((n) => n.body.toLowerCase().includes(q));
   }
+
+  /** Serialize every note to a JSON backup string. */
+  async exportAll(): Promise<string> {
+    return JSON.stringify({ version: 1, notes: await this.list() }, null, 2);
+  }
+
+  /** Restore notes from a backup (accepts `{notes:[...]}` or a bare array).
+   *  Returns how many were imported; bad/duplicate entries are skipped. */
+  async importAll(json: string): Promise<number> {
+    let data: any;
+    try { data = JSON.parse(json); } catch { return 0; }
+    const incoming: any[] = Array.isArray(data) ? data : data?.notes;
+    if (!Array.isArray(incoming)) return 0;
+    let count = 0;
+    for (const raw of incoming) {
+      if (!raw || typeof raw.body !== "string") continue;
+      const id = typeof raw.id === "string" && raw.id.startsWith(PREFIX) ? raw.id : this.id();
+      const updated = typeof raw.updated === "number" ? raw.updated : this.clock();
+      await this.backend.set(id, { id, body: raw.body, updated });
+      count++;
+    }
+    return count;
+  }
 }

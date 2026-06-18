@@ -13,6 +13,9 @@
   #list{overflow:auto;padding:0 8px} .item{display:block;width:100%;text-align:left;background:none;border:0;color:var(--fg);
         padding:10px;border-radius:8px;cursor:pointer} .item:hover{background:#1b2230} .item.active{background:#1b2230;color:var(--accent)}
   .empty{color:var(--muted);padding:12px;font-size:.9rem}
+  .tools{margin-top:auto;padding:10px;display:flex;gap:8px;border-top:1px solid var(--border)}
+  .tools button{flex:1;background:#0b0d12;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:8px;cursor:pointer;font-size:.85rem}
+  .tools button:hover{color:var(--fg);border-color:var(--accent)}
   textarea{border:0;outline:0;resize:none;padding:24px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;font-size:.95rem;line-height:1.6;border-right:1px solid var(--border)}
   .preview{padding:24px;overflow:auto} .preview h1{margin-top:0} .preview code{background:#1b2230;padding:2px 6px;border-radius:5px}
   .preview pre{background:#11151c;padding:14px;border-radius:10px;overflow:auto}
@@ -21,6 +24,7 @@
   <div class="side">
     <div class="top"><input id="search" placeholder="Search…"><button id="new" title="New note">+</button></div>
     <div id="list"></div>
+    <div class="tools"><button id="export" title="Export all notes as JSON">⬇ Export</button><button id="import" title="Import notes from a backup">⬆ Import</button></div>
   </div>
   <textarea id="editor" placeholder="# Write markdown…"></textarea>
   <div id="preview" class="preview"></div>

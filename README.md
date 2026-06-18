@@ -12,9 +12,11 @@ An offline-first Markdown notes app as an installable **PWA**. Notes persist in 
 
 - 💾 **Offline-first** — IndexedDB storage + a cache-first service worker; works on a plane.
 - 📲 **Installable** — web app manifest with icons; "Add to Home Screen".
-- ✍️ **Live preview** — split editor/preview with a safe, escaped Markdown renderer.
+- ✍️ **Live preview** — split editor/preview with a Markdown renderer covering headings, lists (bullet + ordered), blockquotes, code, images, and links.
+- 🔒 **XSS-safe** — input is escaped, Markdown inside `` `code` `` stays literal, link/image URLs are sanitized (`javascript:`/`data:` blocked, quotes can't break out of attributes), and note titles are escaped before they hit the sidebar.
+- 📦 **Export / import** — back up every note to a JSON file and restore it on another device (the offline app's sync story).
 - 🔎 **Search** across all notes; autosave with debounce.
-- 🧪 **Tested without a browser** — storage sits behind a `KVBackend` interface, so the note logic is unit-tested with an in-memory backend.
+- 🧪 **Tested without a browser** — storage sits behind a `KVBackend` interface, so the note logic (incl. export/import) is unit-tested with an in-memory backend.
 
 ## Run it
 
@@ -42,7 +44,7 @@ The dependency inversion around `KVBackend` is the key idea: the tricky persiste
 
 ```bash
 npm install
-npm test          # 8 tests (notes store + markdown)
+npm test          # 16 tests (notes store + export/import + markdown safety)
 npm run build     # tsc, clean
 ```
 

@@ -1,5 +1,5 @@
 // Cache-first service worker for full offline support.
-const CACHE = "md-notes-v1";
+const CACHE = "md-notes-v2";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest",
   "./dist/app.js", "./dist/notes.js", "./dist/storage.js", "./dist/markdown.js"];
 
